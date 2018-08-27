@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "@jbpionnier/eslint-config-node/tslint-strict"
+  ],
+  "rules": {
+
+  }
+}

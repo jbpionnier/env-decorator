@@ -1,0 +1,64 @@
+{
+  "name": "env-decorator",
+  "version": "0.0.1",
+  "author": "Jean-Baptiste Pionnier",
+  "license": "MIT",
+  "description": "Decorator for environment based configurations",
+  "repository": "jbpionnier/env-decorator",
+  "homepage": "https://github.com/jbpionnier/env-decorator#readmer",
+  "bugs": "https://github.com/jbpionnier/env-decorator/issues",
+  "keywords": [
+    "config",
+    "configuration",
+    "env",
+    "environment",
+    "decorator",
+    "settings",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "tslint -p . 'src/**/*.ts'",
+    "test": "NODE_ENV=test jest --maxWorkers=4",
+    "build": "tsc",
+    "prepare": "npm run lint && npm run test && npm run clean && npm run build"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "@jbpionnier/eslint-config-node": "^1.4.1",
+    "@types/jest": "^23.0.0",
+    "@types/node": "^10.5.8",
+    "jest": "^23.5.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true,
+        "enableTsDiagnostics": true
+      }
+    },
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "\\.(test|spec)\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  }
+}
