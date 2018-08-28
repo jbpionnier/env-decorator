@@ -5,7 +5,7 @@
   "license": "MIT",
   "description": "Decorator for environment based configurations",
   "repository": "jbpionnier/env-decorator",
-  "homepage": "https://github.com/jbpionnier/env-decorator#readmer",
+  "homepage": "https://github.com/jbpionnier/env-decorator#readme",
   "bugs": "https://github.com/jbpionnier/env-decorator/issues",
   "keywords": [
     "config",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@jbpionnier/eslint-config-node": "^1.4.1",
     "@types/jest": "^23.0.0",
-    "@types/node": "^10.5.8",
+    "@types/node": "^10.9.2",
     "jest": "^23.5.0",
     "rimraf": "^2.6.2",
     "ts-jest": "^23.1.4",
