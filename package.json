@@ -1,6 +1,6 @@
 {
   "name": "env-decorator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Jean-Baptiste Pionnier",
   "license": "MIT",
   "description": "Decorator for environment based configurations",
@@ -35,14 +35,14 @@
     "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
-    "@jbpionnier/eslint-config-node": "^1.4.1",
+    "@jbpionnier/eslint-config-node": "^1.7.2",
     "@types/jest": "^23.0.0",
-    "@types/node": "^10.9.2",
+    "@types/node": "^10.9.3",
     "jest": "^23.5.0",
     "rimraf": "^2.6.2",
     "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.1"
+    "typescript": "^3.0.3"
   },
   "jest": {
     "globals": {

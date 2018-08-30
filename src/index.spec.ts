@@ -8,7 +8,7 @@ export class Config {
   @Env('NODE_ENV')
   readonly ENV: string
 
-  @Env('DEBUG', { required: false })
+  @Env('DEBUG')
   readonly DEBUG: boolean = true
 
 }

@@ -23,7 +23,7 @@ const transformMap = {
   number: parseFloat,
   boolean: (value: string): boolean | undefined => {
     if (value === 'true') {return true}
-    if (value === 'false') {return true}
+    if (value === 'false') {return false}
   },
 }
 
