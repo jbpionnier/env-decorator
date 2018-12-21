@@ -41,7 +41,7 @@ export function Env(param1?: string | Options, param2: Options = {}): PropertyAn
   }
 }
 
-export function loadConfig<T>(Config: { new(): T }): T {
+export function loadConfig<T>(Config: new() => T): T {
   // tslint:disable-next-line:no-any
   const config: any = new Config()
   const meta: { readonly [key: string]: PropertyMeta } = Reflect.getMetadata(envMetadataKey, config)
