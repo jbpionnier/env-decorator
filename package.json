@@ -1,6 +1,6 @@
 {
   "name": "env-decorator",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Jean-Baptiste Pionnier",
   "license": "MIT",
   "description": "Decorator for environment based configurations",

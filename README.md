@@ -35,6 +35,9 @@ export class Config {
 
   @Env('APP_DEBUG', { type: 'boolean' })
   DEBUG: boolean = true
+
+  @Env([ 'MONGO_URL', 'MONGO_URI', 'MONGODB_ADDON_URI' ])
+  MONGO_URL: string
 }
 
 export const config = loadConfig(Config)
