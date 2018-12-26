@@ -1,7 +1,6 @@
 import { Env, loadConfig } from './'
 
 export class Config {
-
   @Env({ required: true })
   readonly NODE_ENV: string
 
@@ -13,11 +12,9 @@ export class Config {
 
   @Env('DEBUG')
   readonly DEBUG: boolean = true
-
 }
 
 describe('env-decorator', () => {
-
   let config: Config
 
   beforeAll(() => {
@@ -32,5 +29,4 @@ describe('env-decorator', () => {
       DEBUG: true,
     })
   })
-
 })

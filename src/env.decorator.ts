@@ -20,8 +20,12 @@ const transformMap = {
   string: (value: string): string => value,
   number: parseFloat,
   boolean: (value: string): boolean | undefined => {
-    if (value === 'true') {return true}
-    if (value === 'false') {return false}
+    if (value === 'true') {
+      return true
+    }
+    if (value === 'false') {
+      return false
+    }
   },
 }
 
@@ -29,7 +33,6 @@ export const ENV_METADATA = Symbol('env')
 
 export function Env(param1?: Param1, param2?: Options): PropertyAnnotation {
   return (target: object, propertyKey: string): void => {
-
     const envVarName = findEnvVarName(param1, propertyKey)
     const decoratorOptions = findOptions(param1, param2)
 
@@ -40,21 +43,33 @@ export function Env(param1?: Param1, param2?: Options): PropertyAnnotation {
     }
 
     const existingEnvParams = Reflect.getMetadata(ENV_METADATA, target) || {}
-    Reflect.defineMetadata(ENV_METADATA, {
-      ...existingEnvParams,
-      [propertyKey]: propertyOptions,
-    }, target)
+    Reflect.defineMetadata(
+      ENV_METADATA,
+      {
+        ...existingEnvParams,
+        [propertyKey]: propertyOptions,
+      },
+      target,
+    )
   }
 }
 
 function findEnvVarName(param1: Param1, propertyKey: string): ReadonlyArray<string> {
-  if (typeof param1 === 'string') {return [param1]}
-  if (Array.isArray(param1)) {return param1}
+  if (typeof param1 === 'string') {
+    return [param1]
+  }
+  if (Array.isArray(param1)) {
+    return param1
+  }
   return [propertyKey]
 }
 
 function findOptions(param1: Param1, param2: Options | undefined): Options {
-  if (param2) {return param2}
-  if (param1 && typeof param1 === 'object' && param1.constructor === Object) {return param1 as Options}
+  if (param2) {
+    return param2
+  }
+  if (param1 && typeof param1 === 'object' && param1.constructor === Object) {
+    return param1 as Options
+  }
   return {}
 }
