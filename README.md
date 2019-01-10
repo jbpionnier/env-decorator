@@ -19,7 +19,7 @@ npm install --save env-decorator
 **Config class**
 
 ```js
-import { loadConfig, ENV } from 'env-decorator'
+import { loadConfig, Env } from 'env-decorator'
 
 export class Config {
 	
