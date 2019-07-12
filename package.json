@@ -1,6 +1,6 @@
 {
   "name": "env-decorator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Jean-Baptiste Pionnier",
   "license": "MIT",
   "description": "Decorator for environment based configurations",
@@ -33,18 +33,18 @@
     "prepare": "npm run lint && npm run test && npm run clean && npm run build"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@jbpionnier/eslint-config-node": "^1.7.8",
-    "@types/jest": "^23.3.12",
-    "@types/node": "^10.12.18",
-    "jest": "^23.6.0",
-    "prettier": "^1.15.3",
+    "@jbpionnier/eslint-config-node": "^1.7.9",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.2",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
   },
   "jest": {
     "testEnvironment": "node",

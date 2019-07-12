@@ -3,6 +3,7 @@
     "@jbpionnier/eslint-config-node/tslint-strict"
   ],
   "rules": {
-
+    "no-use-before-declare": false,
+    "strict-comparisons": false
   }
 }
