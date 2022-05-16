@@ -1,29 +1,31 @@
 import { ENV_METADATA, PropertyMeta, ValueType } from './env.decorator'
 
 export function loadConfig<T>(Config: new () => T): T {
-  // tslint:disable-next-line:no-any
-  const config: any = new Config()
+  const config: T = new Config()
   const meta: { readonly [key: string]: PropertyMeta } = Reflect.getMetadata(ENV_METADATA, config)
 
-  const values = Object.keys(meta).reduce((valuesAcc: { readonly [key: string]: string }, propertyKey: string) => {
-    const propertyMeta = meta[propertyKey]
-    const envValue = tryCast(findEnvValue(propertyMeta), propertyMeta)
+  const values = Object.keys(meta)
+    .reduce<T>((valuesAcc: T, propertyKey: string) => {
+      const propertyMeta = meta[propertyKey]
+      const envValue = tryCast(findEnvValue(propertyMeta), propertyMeta)
 
-    checkValueRequired(propertyMeta, envValue)
+      checkValueRequired(propertyMeta, envValue)
 
-    if (envValue == undefined) {
+      if (envValue == undefined) {
+        return valuesAcc
+      }
+
+      // @ts-ignore
+      valuesAcc[propertyKey] = envValue
       return valuesAcc
-    }
+    }, config)
 
-    return { ...valuesAcc, [propertyKey]: envValue }
-  }, {})
-
-  return Object.freeze({ ...config, ...values })
+  return values
 }
 
 function checkValueRequired(propertyMeta: PropertyMeta, envValue: ValueType): void {
   if (propertyMeta.required && envValue == undefined) {
-    throw new Error(`Missing variable: ${propertyMeta.envVarName}`)
+    throw new Error(`Missing variable: ${propertyMeta.envVarName.join(', ')}`)
   }
 }
 
@@ -39,6 +41,6 @@ function tryCast(envValue: string | undefined, { envVarName, transform }: Proper
   try {
     return transform(envValue)
   } catch (err) {
-    throw new Error(`Failed to transform property ${envVarName} (value: ${envValue})`)
+    throw new Error(`Failed to transform property ${envVarName.join(', ')} (value: ${envValue})`)
   }
 }
