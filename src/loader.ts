@@ -1,13 +1,17 @@
 import { ENV_METADATA, PropertyMeta, ValueType } from './env.decorator'
 
-export function loadConfig<T>(Config: new () => T): T {
+type Env = {
+  readonly [key: string]: string | undefined;
+}
+
+export function loadConfig<T extends object>(Config: new () => T, env: Env = process.env): T {
   const config: T = new Config()
   const meta: { readonly [key: string]: PropertyMeta } = Reflect.getMetadata(ENV_METADATA, config)
 
-  const values = Object.keys(meta)
+  return Object.keys(meta)
     .reduce<T>((valuesAcc: T, propertyKey: string) => {
       const propertyMeta = meta[propertyKey]
-      const envValue = tryCast(findEnvValue(propertyMeta), propertyMeta)
+      const envValue = tryCast(findEnvValue(propertyMeta, env), propertyMeta)
 
       checkValueRequired(propertyMeta, envValue)
 
@@ -19,8 +23,6 @@ export function loadConfig<T>(Config: new () => T): T {
       valuesAcc[propertyKey] = envValue
       return valuesAcc
     }, config)
-
-  return values
 }
 
 function checkValueRequired(propertyMeta: PropertyMeta, envValue: ValueType): void {
@@ -29,8 +31,8 @@ function checkValueRequired(propertyMeta: PropertyMeta, envValue: ValueType): vo
   }
 }
 
-function findEnvValue(propertyMeta: PropertyMeta): string | undefined {
-  return propertyMeta.envVarName.map((envVarName: string) => process.env[envVarName]).find((envValue?: string) => envValue != undefined)
+function findEnvValue(propertyMeta: PropertyMeta, env: Env): string | undefined {
+  return propertyMeta.envVarName.map((envVarName: string) => env[envVarName]).find((envValue?: string) => envValue != undefined)
 }
 
 function tryCast(envValue: string | undefined, { envVarName, transform }: PropertyMeta): ValueType {
